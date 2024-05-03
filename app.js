@@ -17,6 +17,7 @@ app.use((_, res) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log('Custom error handler');
   const {
     status = 500,
     message = 'Server error',

@@ -1,9 +1,22 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-export const createContactSchema = Joi.object({
+const create = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  phone: Joi.string().min(6).required(),
+});
 
-})
+const update = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().email(),
+  phone: Joi.string().min(6),
+}).min(1).messages({
+  'object.min': 'Body must have at least {{#limit}} field',
+});
 
-export const updateContactSchema = Joi.object({
+const ContactsSchemas = {
+  create,
+  update,
+};
 
-})
+export default ContactsSchemas;
